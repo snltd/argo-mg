@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: meetup-generator-container
-        image: snltd/meetup-generator:1.7.5
+        image: snltd/meetup-generator:1.7.9
         ports:
         - containerPort: 8080
           
