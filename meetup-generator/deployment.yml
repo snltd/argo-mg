@@ -5,6 +5,7 @@ metadata:
   name: meetup-generator
   labels:
     name: meetup-generator
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -25,7 +26,15 @@ spec:
       - name: meetup-generator-container
         image: snltd/meetup-generator:1.7.9
         ports:
-        - containerPort: 8080
+          - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+          periodSeconds: 10
+          failureThreshold: 3
           
 ---
 apiVersion: v1
