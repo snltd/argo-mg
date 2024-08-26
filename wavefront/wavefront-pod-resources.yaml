@@ -1,0 +1,47 @@
+apiVersion: wavefront.com/v1alpha1
+kind: Wavefront
+metadata:
+  name: wavefront
+  namespace: observability-system
+spec:
+  clusterName: kate
+  wavefrontUrl: https://metrics.wavefront.com
+  dataCollection:
+    metrics:
+      enable: true
+      # container resource requests and limits for cluster collector
+      clusterCollector:
+        resources:
+          requests:
+            cpu: 200m
+            memory: 10Mi
+            ephemeral-storage: 20Mi
+          limits:
+            cpu: 300m
+            memory: 80Mi
+            ephemeral-storage: 1Gi
+      # container resource requests and limits for node collectors
+      nodeCollector:
+        resources:
+          requests:
+            cpu: 200m
+            memory: 10Mi
+            ephemeral-storage: 20Mi
+          limits:
+            cpu: 300m
+            memory: 25Mi
+            ephemeral-storage: 512Mi
+  dataExport:
+    wavefrontProxy:
+      enable: false
+      # container resource requests and limits for Wavefront proxy
+      resources:
+        requests:
+          cpu: 100m
+          memory: 200Mi
+          ephemeral-storage: 2Gi
+        limits:
+          cpu: 200m
+          memory: 300Mi
+          ephemeral-storage: 8Gi
+
