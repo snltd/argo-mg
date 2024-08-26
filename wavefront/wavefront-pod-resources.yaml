@@ -33,7 +33,7 @@ spec:
             ephemeral-storage: 512Mi
   dataExport:
     wavefrontProxy:
-      enable: false
+      enable: true
       # container resource requests and limits for Wavefront proxy
       resources:
         requests:
